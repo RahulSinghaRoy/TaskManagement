@@ -41,8 +41,8 @@ public class TaskController {
 		return new ResponseEntity<TaskRequest>(updatedTask, HttpStatus.OK);
 	}
 	
-	@GetMapping("/findtaskbycreatedbyandstatusanddate")
-	public ResponseEntity<List<TaskRequest>> findTaskByCreatedByAndStatusAndDate(@RequestParam String userId, 
+	@GetMapping("/findtaskbycreatedbyandstatusanddate/{userId}")
+	public ResponseEntity<List<TaskRequest>> findTaskByCreatedByAndStatusAndDate(@PathVariable("userId") String userId, 
 																				 @RequestParam(required = false) TaskStatus status, 
 																				 @RequestParam(required = false) LocalDateTime date){
 				List<TaskRequest> taskList = taskService.findCreatedTaskOfUserByStatusAndDate(userId, status, date);
@@ -50,8 +50,8 @@ public class TaskController {
 				return new ResponseEntity<List<TaskRequest>>(taskList, HttpStatus.OK);
 			}
 	
-	@GetMapping("/findtaskbyassigneduserandstatusanddate")
-	public ResponseEntity<List<TaskRequest>> findTaskByAssignedUserAndStatusAndDate(@RequestParam String userId, 
+	@GetMapping("/findtaskbyassigneduserandstatusanddate/{userId}")
+	public ResponseEntity<List<TaskRequest>> findTaskByAssignedUserAndStatusAndDate(@PathVariable("userId") String userId, 
 																					@RequestParam(required = false) TaskStatus status, 
 																					@RequestParam(required = false) LocalDateTime date){
 				List<TaskRequest> taskList = taskService.findAssignedTaskOfUserByStatusAndDate(userId, status, date);
